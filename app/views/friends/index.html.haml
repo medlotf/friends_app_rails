@@ -1,0 +1,20 @@
+%h1 Friends
+%table.table.table-bordered.table-hover.table-striped
+  %thead.table-dark
+    %tr
+      %th Name
+      %th Email
+      %th Phone
+      %th Insta
+      %th{:colspan => "2"}
+  %tbody
+    - @friends.each do |friend|
+      %tr
+        %td= link_to friend.first_name + ' ' + friend.last_name, friend
+        %td= friend.email
+        %td= friend.phone
+        %td= friend.insta
+        %td= link_to 'Edit', edit_friend_path(friend), class:"btn btn-success btn-sm"
+        %td= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm"
+%br/
+= link_to 'New Friend', new_friend_path, class:"btn btn-secondary"

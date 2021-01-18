@@ -1,0 +1,24 @@
+= form_with(model: friend) do |form|
+  - if friend.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(friend.errors.count, "error")
+        prohibited this friend from being saved:
+      %ul
+        - friend.errors.each do |error|
+          %li= error.full_message
+  .field.form-group.pb-2
+    = form.text_field :first_name, class:"form-control", placeholder:"First name"
+  .field.form-group.pb-2
+    = form.text_field :last_name, class:"form-control", placeholder:"Last name"
+  .field.form-group.pb-2
+    = form.text_field :email, class:"form-control", placeholder:"Email"
+  .field.form-group.pb-2
+    = form.text_field :phone, class:"form-control", placeholder:"Phone number"
+  .field.form-group.pb-2
+    = form.text_field :insta, class:"form-control", placeholder:"Intagram"
+  .field.form-group.pb-2
+    = form.number_field :user_id, class:"form-control", id: :friend_user_id, placeholder:"User Id", value: current_user.id, type: :hidden
+  %br/
+  .actions
+    = form.submit class:"btn btn-secondary mb-1"
